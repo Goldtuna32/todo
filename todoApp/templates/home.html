@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4">Welcome to the To Do App</h1>
+        <p class="lead">Manage your tasks efficiently!</p>
+        <a href="{% url 'all' %}" class="btn btn-primary">View Tasks</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %} 
+
+{% block title %}Edit: {{ item.title }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Edit Task</h1>
+            <a href="{% url 'detail' item.id %}" class="btn btn-outline-secondary btn-sm">Cancel</a>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-group mb-3">
+                        <label for="title" class="font-weight-bold">Title</label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="title" 
+                               name="title" 
+                               value="{{ item.title }}" 
+                               required 
+                               maxlength="100">
+                        <small class="text-muted">Briefly name your task.</small>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="description" class="font-weight-bold">Description</label>
+                        <textarea class="form-control" 
+                                  id="description" 
+                                  name="description" 
+                                  rows="5">{{ item.description }}</textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success px-5">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

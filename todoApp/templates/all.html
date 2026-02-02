@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block title %}All To Do Items{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">All To Do Items</h1>
+    <a href="{% url 'add' %}">Add a new to do item</a>
+    <ul class="list-group mt-4">
+        {% for item in todos %}
+        <li class="list-group-item">
+            <span class="badge bg-primary">{{ forloop.counter }}</span>
+            <a href="{% url 'detail' item.id %}">{{ item.title }}</a>
+        </li>
+        {% empty %}
+
+
+        <li class="list-group-item">No to do items found.</li>
+        <li class="list-group-item"></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
