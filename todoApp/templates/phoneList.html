@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Phone Catalog{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">📱 Phone Catalog</h1>
+        <span class="badge badge-secondary">{{ data|length }} Items Found</span>
+    </div>
+
+    {% if data %}
+    <div class="row">
+        {% for item in data %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-header bg-white border-0 pt-3">
+                    <h5 class="card-title font-weight-bold text-dark mb-0">
+                        {{ item.name }}
+                    </h5>
+                    <small class="text-muted">ID: {{ item.id }}</small>
+                </div>
+
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        {% if item.data %}
+                        {% for key, value in item.data.items %}
+                        <li class="mb-1">
+                            <span class="text-capitalize text-secondary font-weight-bold small">
+                                {{ key }}:
+                            </span>
+                            <span class="small">{{ value }}</span>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <li class="text-muted small italic">No specifications available.</li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+               
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info text-center py-5">
+        <h3>No data available.</h3>
+        <p>We couldn't reach the API or the list is currently empty.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
